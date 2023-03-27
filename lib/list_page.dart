@@ -12,7 +12,7 @@ class NewsListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'New App'
+          'News App'
         ),
       ),
       body: FutureBuilder<String>(
@@ -45,7 +45,7 @@ class NewsListPage extends StatelessWidget {
       leading: Image.network(
         article.urlToImage,
         width: 100,
-      ),
+      ), 
       title: Text(article.title),
       subtitle: Text(article.author),
       onTap: () {

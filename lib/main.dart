@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         ArticleWebView.routeName: (context) => ArticleWebView(
           url: ModalRoute.of(context)?.settings.arguments as String,
-        )
+        ),
       },
     );
   }

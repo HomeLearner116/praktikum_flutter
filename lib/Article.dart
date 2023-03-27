@@ -17,13 +17,13 @@ class Article {
     required this.content,
   });
 
-  Article.fromJson(Map<String, dynamic> json){
-    title = json['author'];
-    title = json['title'];
-    title = json['description'];
-    title = json['url'];
-    title = json['urlToImage'];
-    title = json['publishedAt'];
-    title = json['context'];
+  Article.fromJson(Map<String, dynamic> jsonMap){
+    author = jsonMap['author'];
+    title = jsonMap['title'];
+    description = jsonMap['description'];
+    url = jsonMap['url'];
+    urlToImage = jsonMap['urlToImage'];
+    publishedAt = jsonMap['publishedAt'];
+    content = jsonMap['content'];
   }
 }
