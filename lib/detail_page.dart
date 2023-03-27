@@ -8,6 +8,14 @@ class ArticleDetailPage extends StatelessWidget {
   final Article article;
   const ArticleDetailPage({required this.article});
 
+  // Widget buildImage() => AspectRatio(
+  //   aspectRatio: 1,
+  //       child: Image.network(
+  //         article.urlToImage,
+  //         fit: BoxFit.cover,
+  //       ),
+  //     );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +27,12 @@ class ArticleDetailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(article.urlToImage),
+            Hero(
+              tag: article,
+              child: Image.network(
+                article.urlToImage,
+              )
+            ),
             Padding(
               padding: EdgeInsets.all(10),
               child: Column(

@@ -13,7 +13,7 @@ class ArticleWebView extends StatelessWidget {
       title: '',
       home: Scaffold(
         appBar: AppBar(
-          title: Text(''),
+          title: Text('News App'),
         ),
         body: WebView(
           initialUrl: url,

@@ -11,13 +11,12 @@ class NewsListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'News App'
-        ),
+        title: Text('News App'),
       ),
       body: FutureBuilder<String>(
-        future: DefaultAssetBundle.of(context).loadString('assets/articles/articles.json'),
-        builder: (context, snapshot){
+        future: DefaultAssetBundle.of(context)
+            .loadString('assets/articles/articles.json'),
+        builder: (context, snapshot) {
           final List<Article> articles = parseArticles(snapshot.data);
           return ListView.builder(
             itemCount: articles.length,
@@ -31,29 +30,44 @@ class NewsListPage extends StatelessWidget {
   }
 
   List<Article> parseArticles(String? json) {
-    if(json == null){
+    if (json == null) {
       return [];
     }
     final List parsed = jsonDecode(json);
     return parsed.map((json) => Article.fromJson(json)).toList();
   }
 
+  // Widget buildImage(String urlToImage) => Image.network(
+  //       urlToImage,
+  //       fit: BoxFit.cover,
+  //       width: 100,
+  //       height: 100,
+  //     );
+
   Widget _buildArticleItem(BuildContext context, Article article) {
     return ListTile(
       contentPadding:
-      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      leading: Image.network(
-        article.urlToImage,
-        width: 100,
-      ), 
+          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ArticleDetailPage(article: article)));
+        },
+        child: Hero(
+          tag: article,
+          child: Image.network(
+            article.urlToImage,
+            width: 100,
+          ),
+        ),
+      ),
       title: Text(article.title),
       subtitle: Text(article.author),
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          ArticleDetailPage.routeName,
-          arguments: article
-        );
+        Navigator.pushNamed(context, ArticleDetailPage.routeName,
+            arguments: article);
       },
     );
   }
